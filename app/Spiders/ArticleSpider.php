@@ -31,10 +31,10 @@ class ArticleSpider extends BasicSpider
     ];
 
     public array $itemProcessors = [
-        // [
-        //     ArticleProcessor::class,
-        //     [],
-        // ],
+        [
+            ArticleProcessor::class,
+            [],
+        ],
     ];
 
     public array $extensions = [
@@ -55,7 +55,6 @@ class ArticleSpider extends BasicSpider
 
 
         $articles = [];
-        var_dump('handling res');
         $article_nodes->each(function (Crawler $node, $i) use (&$articles) {
 
             $article_header_node = $node->filter('header h2 a[title]');
