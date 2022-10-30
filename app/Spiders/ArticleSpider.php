@@ -11,6 +11,7 @@ use RoachPHP\Spider\BasicSpider;
 use RoachPHP\Spider\ParseResult;
 use App\ItemProcessors\ArticleProcessor;
 use Symfony\Component\DomCrawler\Crawler;
+use Carbon\Carbon;
 
 class ArticleSpider extends BasicSpider
 {
@@ -57,7 +58,7 @@ class ArticleSpider extends BasicSpider
         $articles = [];
         $article_nodes->each(function (Crawler $node, $i) use (&$articles) {
 
-            $article_header_node = $node->filter('header h2 a[title]');
+            $article_header_node = $node->filter('header h2 a[title] span:nth-child(2)');
 
             /**
              * Checks if there's a present header for the article
@@ -100,11 +101,13 @@ class ArticleSpider extends BasicSpider
 
 
             $article['title'] = $article_header_node->text();
-            $article['link'] = $article_header_node->attr('href');
+            $article['link'] = $node->filter('header h2 a[title]')->attr('href');
             $article['excerpt'] = $node->filter('section > a[title]')->text();
             $article['date'] = $date;
             $article['image_url'] = $node->filter('figure noscript > img')->attr('src');
 
+            $article['created_at'] = Carbon::now();
+            $article['updated_at'] = Carbon::now();
             $articles[$i] = $article;
         });
 

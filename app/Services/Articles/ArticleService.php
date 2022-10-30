@@ -15,6 +15,7 @@ class ArticleService
         try {
             Article::insert($articles);
         } catch (\Throwable $th) {
+            throw $th;
             Log::error("Error saving articles", [
                 "message" => $th->getMessage(),
                 "location" => "ArticleService@saveArticles"
