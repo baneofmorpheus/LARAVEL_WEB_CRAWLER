@@ -21,4 +21,8 @@ class Article extends Model
         'excerpt',
         'image_url',
     ];
+
+    protected $casts = [
+        'date' => 'string',
+    ];
 }
