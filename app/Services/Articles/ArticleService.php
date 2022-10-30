@@ -12,9 +12,7 @@ class ArticleService
 
     public function saveArticles(array $articles)
     {
-
         try {
-
             Article::insert($articles);
         } catch (\Throwable $th) {
             Log::error("Error saving articles", [
@@ -23,5 +21,13 @@ class ArticleService
 
             ]);
         }
+    }
+
+    public function listArticles()
+    {
+
+
+
+        return  Article::all()->toArray();
     }
 }
