@@ -5,7 +5,7 @@ Built to scrap a [webpage][https://www.spiegel.de/politik/deutschland/] and save
 ## Requirements
 
 [Laravel](https://laravel.com/docs/9.x/installation#laravel-and-docker) <br/>
-Docker <br/>
+Docker(Only if you want to use sail) <br/>
 
 Install dependencies <br/>
 Migrate database and run seeders(optional) <br/>
