@@ -38,6 +38,6 @@ class ArticleTest extends TestCase
 
         $article_service = new ArticleService();
         $article_service->saveArticles($created_articles);
-        $this->assertDatabaseCount('articles', 10);;
+        $this->assertDatabaseCount('articles', 10);
     }
 }
